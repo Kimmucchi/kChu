@@ -12,3 +12,4 @@ praw==7.1.0
 aiocron==1.3
 aiofiles==0.7.0
 zipstream==1.1.4
+aiozipstream==0.4
