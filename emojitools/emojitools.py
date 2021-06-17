@@ -32,7 +32,6 @@ from zipstream.aiozipstream import AioZipStream
 from asynctempfile import TemporaryDirectory, NamedTemporaryFile
 
 import discord
-from redbot.core import commands, data_manager
 
 # Error messages
 TIME_OUT = "The request timed out or we are being ratelimited, please try again after a few moments."
