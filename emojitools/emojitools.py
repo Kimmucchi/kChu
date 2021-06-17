@@ -48,7 +48,6 @@ class EmojiTools(commands.Cog):
       self.bot = bot
 
   @commands.guild_only()
-  @commands.admin_or_permissions(manage_emojis=True)
   @commands.group()
   async def emojitools(self, ctx):
       """
@@ -60,7 +59,6 @@ class EmojiTools(commands.Cog):
       `[p]emojitools save` allows you to save emojis to folders **in the cog data path**: this requires storage!
       """
 
-  @commands.admin_or_permissions(administrator=True)
   @emojitools.group(name="save")
   async def _save(self, ctx):
       """
@@ -342,7 +340,6 @@ class EmojiTools(commands.Cog):
 
       return await ctx.send(f"{len(added_emojis)} emojis were added to this server: {' '.join([str(e) for e in added_emojis])}")
 
-  @commands.admin_or_permissions(manage_emojis=True)
   @commands.cooldown(rate=1, per=5)
   @_add.command(name="fromimage")
   async def _add_from_image(self, ctx, name: str = None):
@@ -382,7 +379,6 @@ class EmojiTools(commands.Cog):
 
       return await ctx.send(f"{new} has been added to this server!")
 
-  @commands.admin_or_permissions(administrator=True)
   @commands.cooldown(rate=1, per=60)
   @_add.command(name="fromzip")
   async def _add_from_zip(self, ctx):
