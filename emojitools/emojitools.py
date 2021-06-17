@@ -26,12 +26,14 @@ import os
 import asyncio
 import shutil
 import aiofiles
+import discord
 from io import BytesIO
 from zipfile import ZipFile
 from zipstream.aiozipstream import AioZipStream
 from asynctempfile import TemporaryDirectory, NamedTemporaryFile
+from discord.ext import commands
 
-import discord
+
 
 # Error messages
 TIME_OUT = "The request timed out or we are being ratelimited, please try again after a few moments."
@@ -41,7 +43,7 @@ FILE_SIZE = "Unfortunately, it seems the attachment was too large to be sent."
 
 
 class EmojiTools(commands.Cog):
-    """Tools for Managing Custom Emojis"""
+  """Tools for Managing Custom Emojis"""
   def __init__(self, bot):
       self.bot = bot
 
