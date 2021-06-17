@@ -7,7 +7,7 @@ from discord.ext import commands
 '''Tools relating to custom emoji manipulation and viewing.'''
 
 
-class Emoji:
+class Emoji(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
