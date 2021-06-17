@@ -1,6 +1,0 @@
-discord_timers==0.1.0
-aiofiles==0.7.0
-asynctempfile==0.5.0
-discord==1.0.1
-redbot==1.1
-zipstream==1.1.4
