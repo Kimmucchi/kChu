@@ -135,9 +135,9 @@ class EventSubmit(commands.Cog):
                           embed = discord.Embed(color=11014160, title=f"`Your Entry Is Invalid! (｡•́︿•̀｡)`", description=f"**READ THESE INSTRUCTIONS CAREFULLY AND DM ME AGAIN!**\nYou must upload your image or paste the image URL when I ask you to!\n> __If you are using an image URL, please make sure that it ends in__ \n> `.jpg/jpeg, .png, or .gif` __or your entry will be invalidated!!__")
                           embed.set_footer(text = "Your submission did not reach the staff.")
                           await message.channel.send(embed=embed)
-                  elif reaction.emoji == "❌":
-                    embed = discord.Embed(color=11014160, title="Alright then, see you around~ ♫")
-                    await cicin.edit(embed=embed)  
+                elif reaction.emoji == "❌":
+                  embed = discord.Embed(color=11014160, title="Alright then, see you around~ ♫")
+                  await cicin.edit(embed=embed)  
             except asyncio.exceptions.TimeoutError:
               print("timeout error")
               self.bot.sent_event_message.remove(message.author.id)
