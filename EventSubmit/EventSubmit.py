@@ -137,7 +137,10 @@ class EventSubmit(commands.Cog):
                           await message.channel.send(embed=embed)
                 elif reaction.emoji == "❌":
                   embed = discord.Embed(color=11014160, title="Alright then, see you around~ ♫")
-                  await cicin.edit(embed=embed)  
+                  await cicin.edit(embed=embed)
+              elif reaction.emoji == "❌":
+                  embed = discord.Embed(color=11014160, title="Alright then, see you around~ ♫")
+                  await cicin.edit(embed=embed)       
             except asyncio.exceptions.TimeoutError:
               print("timeout error")
               self.bot.sent_event_message.remove(message.author.id)
