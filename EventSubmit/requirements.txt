@@ -1,0 +1,3 @@
+pytz==2020.5
+discord_timers==0.1.0
+discord==1.7.3
