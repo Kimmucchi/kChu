@@ -8,6 +8,7 @@ class EventSubmit(commands.Cog):
     print("initiated cog")
     self.bot = bot
     self.ctx = None
+    self.bot.sent_event_message = []
 
 #------------------------------------------------
   def legend(self, emoji):
