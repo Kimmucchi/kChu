@@ -15,6 +15,12 @@ class EventLeaderboard(commands.Cog):
     self.bot = bot
 
 #--------------------------------------------------
+#HELP
+  @commands.command(name='eventhelp', aliases=['ehelp'])
+  async def ehelp(self,ctx):
+    embed = discord.Embed(color=9693439, title='Event Commands', description='• `c/lb`\n> Shows the top scoring players!\n\n• `c/points <@user> <amount>` \n> Gives a specified amount of points.\n\n• `c/deduct <@user> <amount>`\n> Subtracts a specified amount of points.\n\n• `c/find <@user>`\n> Looks for a specific user\'s details.')
+    await ctx.send(embed=embed)
+#--------------------------------------------------
 #LEADERBOARD
   @commands.command(name='leaderboard', aliases = ['lb'])
   async def leaderboard(self, ctx):
@@ -104,7 +110,7 @@ class EventLeaderboard(commands.Cog):
       contestant = member.name
       UID = str(member.id)
       x = collection.find_one({"UID": UID})
-      embed = discord.Embed(color=9693439, title=member.nick, description=f'__**Profile**__\n•► {member.mention}\n\n__**User ID**__ \n•► `{x["UID"]}` \n\n__**Points**__\n•► {x["points"]}')
+      embed = discord.Embed(color=9693439, title=member.nick, description=f'__**Profile**__\n•{member.mention}\n\n__**User ID**__ \n•`{x["UID"]}` \n\n__**Points**__\n•{x["points"]}')
       embed.set_author(name=f'{member.name}#{member.discriminator}')
       await ctx.send(embed=embed)
     except:
