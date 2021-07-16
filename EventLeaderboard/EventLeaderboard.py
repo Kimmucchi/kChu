@@ -55,8 +55,7 @@ class EventLeaderboard(commands.Cog):
       try:
         reaction, user = await self.bot.wait_for("reaction_add", check=lambda reaction, user: user == ctx.author and reaction.emoji in buttons, timeout=60.0)
       except asyncio.TimeoutError:
-        embed = discord.Embed(title = 'Timed Out.')
-        await msg.edit(embed=embed)
+        await ctx.send('*Timed out.*')
         await msg.clear_reactions() 
         break
       else:
