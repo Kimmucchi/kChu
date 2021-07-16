@@ -24,22 +24,60 @@ class EventLeaderboard(commands.Cog):
 #LEADERBOARD
   @commands.command(name='leaderboard', aliases = ['lb'])
   async def leaderboard(self, ctx):
+    def leaderboard_embed(description):
+      embed = discord.Embed(color=9693439, title='LEADERBOARD', description=description)
+      embed.set_image(url='https://i.ibb.co/sFdTmxb/smalldivider.png')
+      embed.set_author(name="Week #2")
+      embed.set_footer(text='Who\'s That Genshinmon(?)')
+      embed.set_thumbnail(url='https://i.ibb.co/X5C8Bfb/wtg.png')
+      return embed
+
     embed_str = ""
-    place = 1
+    rank = 0
+    current = 0
+    buttons = [u'\u23EA', u'\u25C0', u'\u25B6', u'\u23E9']
+    pages = []
     for x in collection.find().sort("points", -1):
       member = ctx.guild.get_member(int(x["UID"]))
-      new_line = f'`{place}.` {member.mention}\n> **SCORE**: `{str(x["points"])}`\n'
+      rank += 1
+      new_line = f'`{rank}.` {member.mention}\n> **SCORE**: `{str(x["points"])}`\n'
       embed_str += new_line
-      place += 1
-    embed = discord.Embed(color=9693439, title='LEADERBOARD', description=embed_str)
-    embed.set_image(url='https://i.ibb.co/sFdTmxb/smalldivider.png')
-    embed.set_author(name="Week #2")
-    embed.set_footer(text='Who\'s That Genshinmon(?)')
-    embed.set_thumbnail(url='https://i.ibb.co/X5C8Bfb/wtg.png')
-    await ctx.channel.send(embed=embed)
+      new_page = rank%5
+      if new_page == 0:
+        pages.append(embed_str)
+        embed_str = ""
+    if embed_str != "":
+      pages.append(embed_str)
+    msg = await ctx.channel.send(embed=leaderboard_embed(pages[current]))
+    while True:
+      for button in buttons:
+        await msg.add_reaction(button)
+      try:
+        reaction, user = await self.bot.wait_for("reaction_add", check=lambda reaction, user: user == ctx.author and reaction.emoji in buttons, timeout=60.0)
+      except asyncio.TimeoutError:
+        embed = discord.Embed(title = 'Timed Out.')
+        await msg.edit(embed=embed)
+        await msg.clear_reactions() 
+        break
+      else:
+        previous_page = current
+        if reaction.emoji == u'\u23EA':
+          current = 0
+        elif reaction.emoji == u'\u25C0':
+          if current > 0:
+            current -= 1
+        elif reaction.emoji == u'\u25B6':
+          if current < len(pages)-1:
+            current += 1
+        elif reaction.emoji == u'\u23E9':
+          current = len(pages)-1
+        for button in buttons:
+          await msg.remove_reaction(button, ctx.author)
+        if current != previous_page:
+          await msg.edit(embed=leaderboard_embed(pages[current]))
 
 #--------------------------------------------------
-#ADD POINT
+  #ADD POINT
   @commands.command(name='points')
   @commands.has_role('Cicin Mage | EVENT')
   async def points(self, ctx, member: discord.Member, amt=1):
