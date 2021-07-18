@@ -1,0 +1,5 @@
+requests==2.22.0
+discord_timers==0.1.0
+pymongo==3.10.1
+pytz==2020.5
+discord==1.7.3
