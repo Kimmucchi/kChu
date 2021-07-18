@@ -40,7 +40,7 @@ class EventLeaderboard(commands.Cog):
     for x in collection.find().sort("points", -1):
       member = ctx.guild.get_member(int(x["UID"]))
       rank += 1
-      new_line = f'`{rank}.` {member.mention}\n> **SCORE**: `{str(x["points"])}`\n'
+      new_line = f'`{rank}.` \n> **SCORE**: `{str(x["points"])}`\n'
       embed_str += new_line
       new_page = rank%5
       if new_page == 0:
