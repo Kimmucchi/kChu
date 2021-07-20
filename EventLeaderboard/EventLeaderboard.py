@@ -5,7 +5,7 @@ from io import BytesIO
 from discord.ext import commands, tasks
 
 #GLOBAL VARIABLES
-mongo = pymongo.MongoClient('mongodb+srv://rk:tc@cluster0.29x6p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongo = pymongo.MongoClient('mongodb+srv://cicin:tc@cluster0.zfmph.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 database = mongo['leaderboard']
 collection = database['contestants']
 
