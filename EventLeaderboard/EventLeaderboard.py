@@ -27,7 +27,7 @@ class EventLeaderboard(commands.Cog):
     def leaderboard_embed(description):
       embed = discord.Embed(color=9693439, title='LEADERBOARD', description=description)
       embed.set_image(url='https://i.ibb.co/sFdTmxb/smalldivider.png')
-      embed.set_author(name="Week #3")
+      embed.set_author(name="Week #4 — Final Week")
       embed.set_footer(text='Who\'s That Genshinmon(?)')
       embed.set_thumbnail(url='https://i.ibb.co/X5C8Bfb/wtg.png')
       return embed
